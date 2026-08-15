@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="hy">
+<html lang="hy" data-nav="3">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -239,6 +239,7 @@ html[data-nav="3"] .brand{padding:0;}
   html[data-nav="3"] .hin{--hplate:49px;}
   html[data-nav="3"] .brand{height:var(--hplate);padding-block:0;}
   html[data-nav="3"] .navr{height:var(--hplate);}
+  html[data-nav="3"] .brand::after{inset:0 -11px;}
 }
 html[data-nav="3"] .navr{gap:0;border-radius:2px;padding:5px;
   background:rgba(13,36,64,var(--glass,.72));
@@ -257,7 +258,11 @@ html[data-nav="3"] .ixp{margin-top:var(--s3);}
   html[data-nav] .hin{grid-template-columns:auto 1fr auto;height:62px;
     align-items:center;padding-top:0;}
   html[data-nav] .ixb .sheet{display:none;}
-  html[data-nav="3"] .brand{box-shadow:none;background:none;padding:0;height:auto;}
+  html[data-nav="3"] .hin{--hplate:46px;}
+  html[data-nav="3"] .brand{box-shadow:none;background:none;padding:0;
+    height:var(--hplate);}
+  html[data-nav="3"] .navr{height:var(--hplate);}
+  html[data-nav="3"] .brand::after{inset:0 -11px;}
 }
 @media (max-width:430px){
   .ixb s,.ixb em{display:none;}
