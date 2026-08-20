@@ -1511,7 +1511,13 @@ function openInd(o){
   var ph=document.getElementById('im_ph'),img=ph.firstElementChild;
   if(o.img!==undefined&&PT.imgs[o.img]){
     if(!img){img=document.createElement('img');ph.appendChild(img);}
-    img.src=PT.imgs[o.img];img.alt=o.title;ph.style.display='';}
+    var _full=PT.imgs[o.img],_small=_full.replace(/\.jpg$/,'-756.jpg');
+    img.dataset.want=_full;img.alt=o.title;img.src=_small;
+    img.onerror=function(){if(img.dataset.want===_full&&img.src!==_full)img.src=_full;};
+    var _up=new Image();
+    _up.onload=function(){if(img.dataset.want===_full)img.src=_full;};
+    _up.src=_full;
+    ph.style.display='';}
   else ph.style.display='none';
   document.getElementById('im_t').textContent=o.title;
   document.getElementById('im_p1').textContent=o.p1;
