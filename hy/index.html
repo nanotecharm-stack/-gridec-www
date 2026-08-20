@@ -2153,7 +2153,7 @@ function psFrame(ts){
   PS.c+=(PS.t-PS.c)*k;
   if(Math.abs(PS.t-PS.c)<0.35){PS.c=PS.t;PS.raf=0;PS.last=0;}
   else PS.raf=requestAnimationFrame(psFrame);
-  PS.self=true;var _dp=window.devicePixelRatio||1;window.scrollTo(0,Math.round(PS.c*_dp)/_dp);PS.self=false;
+  PS.self=true;var _dp=window.devicePixelRatio||1;window.scrollTo(0,PS.raf?PS.c:Math.round(PS.c*_dp)/_dp);PS.self=false;
   if(typeof suiteUpd==='function')suiteUpd();
 }
 function psPush(dy){
