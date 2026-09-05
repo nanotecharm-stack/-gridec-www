@@ -50,8 +50,8 @@
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--brand);
   outline-offset:3px;border-radius:2px;}
-.hero a:focus-visible,.hero button:focus-visible,.plate a:focus-visible,
-.plate button:focus-visible,.plate2 a:focus-visible,.plate2 button:focus-visible,
+.plate a:focus-visible,.plate button:focus-visible,
+.plate2 a:focus-visible,.plate2 button:focus-visible,
 .ic:focus-visible{outline-color:#FDFAF4;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:'Arian AMU','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;}
@@ -330,9 +330,6 @@ html[data-nav="3"] .ixp{margin-top:var(--s3);}
           calc(max(0px,(100% - 1280px)/2) * 0.42 + clamp(18px,4vw,56px));}
 h1{font-size:clamp(38px,4.75vw,77px);margin-top:20px;text-wrap:balance;}
 .hcol{position:relative;z-index:3;}
-@media (min-width:961px) and (min-height:760px){
-  .hgrid .hcol{top:0;}
-}
 @media (min-width:961px){.hero,.hgrid{min-height:calc(100svh - clamp(80px,12vh,140px));}}
 .hero h1{color:var(--fg);width:max-content;max-width:calc(100% + clamp(18px,3vw,52px) - 8px);}
 .hero h1 .dtw{display:inline-block;white-space:pre;}
@@ -355,45 +352,36 @@ html[lang="hy"] .hero .hp{font-size:clamp(17px,1.6vw,21px);}
   --pq-nom:rgba(13,36,64,.22);--pq-ref:rgba(13,36,64,.66);
   opacity:0;transition:opacity .6s var(--e) .1s;}
 .pq.is-in{opacity:1;}
-.pq-cap{display:block;font-size:16px;line-height:normal;margin-bottom:var(--s4);}
-.pq-cap span{display:inline-flex;align-items:center;font-family:'Arian AMU Serif',Georgia,serif;font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--fg-soft);}
-.pq-chart{position:relative;height:clamp(240px,36vh,340px);}
-.pq-cv{position:absolute;inset:0;width:100%;height:100%;display:block;}
-.pq-ctl{display:flex;flex-wrap:wrap;align-items:center;margin-top:var(--s5);}
-.pq .pq-pause{position:absolute;right:0;top:-15px;padding-inline:var(--s2) 0;}
-@media (max-width:470px){.pq .pq-pause{position:static;padding-inline:var(--s2);}}
-.pq-modes{display:flex;flex-wrap:wrap;gap:0 var(--s2);}
-.pq-m,.pq-pause{display:inline-flex;align-items:center;gap:9px;min-height:44px;
-  padding:var(--s2) var(--s2);font-size:14px;line-height:1.3;color:var(--fg-mid);
-  position:relative;border-radius:2px;text-align:left;
-  transition:color .3s var(--e);}
-.pq-m i,.pq-pause i{flex:0 0 auto;display:block;box-sizing:border-box;}
-.pq-m i{width:9px;height:9px;border:1px solid var(--fg-soft);background:transparent;
-  transition:background-color .3s var(--e),border-color .3s var(--e);}
-.pq-m::after{content:"";position:absolute;left:var(--s2);right:var(--s2);bottom:4px;height:1px;
-  background:var(--brand);transform:scaleX(0);transform-origin:left;
-  transition:transform .4s var(--e);}
-.pq-m:hover{color:var(--fg);}
-.pq-m[aria-pressed="true"]{color:var(--fg);}
-.pq-m[aria-pressed="true"] i{background:var(--brand);border-color:var(--brand);}
-.pq-m[aria-pressed="true"]::after{transform:scaleX(1);}
-.pq-pause{color:var(--fg-soft);font-size:13px;}
+.pq-head{display:flex;align-items:center;gap:var(--s3);margin:-12px 0 var(--s3) 0;}
+.pq-no{font-family:'Departure Mono',monospace;font-size:11px;letter-spacing:.11em;
+  font-feature-settings:'case' 1;color:var(--fg-soft);min-width:2.4ch;}
+.pq-dots{display:flex;margin-left:-9px;}
+.pq-dot{width:24px;height:44px;display:grid;place-items:center;border-radius:2px;}
+@media (pointer:coarse){.pq-dot{width:32px;}}
+.pq-dot i{display:block;width:6px;height:6px;background:var(--hair);
+  transition:background-color .3s var(--e),transform .3s var(--e);}
+.pq-dot:hover i{background:var(--fg-soft);transform:scale(1.34);}
+.pq-dot[aria-pressed="true"] i{background:var(--brand);transform:none;}
+.pq-cap{display:grid;margin:0 0 0 -3px;font-family:'Arian AMU Serif',Georgia,serif;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--fg);line-height:1.3;}
+.pq-cap span{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .45s var(--e);white-space:nowrap;}
+.pq[data-mode="normal"] .pq-cap [data-x="normal"],
+.pq[data-mode="dip"] .pq-cap [data-x="dip"],
+.pq[data-mode="harm"] .pq-cap [data-x="harm"]{visibility:visible;opacity:1;}
+.pq-pause{width:44px;height:44px;display:grid;place-items:center;border-radius:2px;
+  color:var(--fg-soft);transition:color .3s var(--e);}
 .pq-pause:hover{color:var(--fg);}
-.pq-pause i{width:9px;height:9px;position:relative;}
+.pq-pause{margin-left:auto;}
+.pq-pause i{position:relative;width:9px;height:9px;}
 .pq-pause i::before,.pq-pause i::after{content:"";position:absolute;top:0;bottom:0;width:2px;
   background:currentColor;transition:opacity .2s var(--e);}
 .pq-pause i::before{left:1px;}.pq-pause i::after{right:1px;}
 .pq.is-paused .pq-pause i::after{opacity:0;}
 .pq.is-paused .pq-pause i::before{left:0;width:0;height:0;top:0;bottom:auto;background:none;
   border-style:solid;border-width:4.5px 0 4.5px 8px;border-color:transparent transparent transparent currentColor;}
-.pq-pl{display:grid;}
-.pq-pl b{grid-area:1/1;font-weight:inherit;transition:opacity .2s var(--e);}
-.pq-pl b+b{visibility:hidden;opacity:0;}
-.pq.is-paused .pq-pl b:first-child{visibility:hidden;opacity:0;}
-.pq.is-paused .pq-pl b+b{visibility:visible;opacity:1;}
 .pq.is-static .pq-pause{display:none;}
-.pq button:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+.pq-chart{position:relative;height:clamp(240px,36vh,340px);}
+.pq-cv{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .pq-x{display:grid;margin-top:var(--s3);font-size:14px;line-height:1.6;color:var(--fg-mid);
   max-width:46ch;}
 .pq-x span{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .45s var(--e);}
@@ -402,7 +390,7 @@ html[lang="hy"] .hero .hp{font-size:clamp(17px,1.6vw,21px);}
 .pq[data-mode="harm"] .pq-x [data-x="harm"]{visibility:visible;opacity:1;}
 .pq-note{margin-top:var(--s4);font-family:'Arian AMU Serif',Georgia,serif;font-size:12px;letter-spacing:.02em;
   color:var(--fg-soft);}
-html[lang="hy"] .pq-cap span,html[lang="hy"] .pq-note{font-family:'Arian AMU','Helvetica Neue',sans-serif;
+html[lang="hy"] .pq-cap,html[lang="hy"] .pq-note{font-family:'Arian AMU','Helvetica Neue',sans-serif;
   letter-spacing:0;text-transform:none;}
 html.wipecover .pq{visibility:hidden;}
 header.on-dark .brand{color:#F6F1E9;}
@@ -925,9 +913,9 @@ footer .rv{transition-delay:calc(var(--i,0) * .09s);}
 :lang(hy) footer h3,:lang(hy) #imd .lb,:lang(hy) #fmd .ghd{font-weight:600;}
 :lang(hy) .tag,:lang(hy) .asg .tag{letter-spacing:.07em;}
 :lang(hy) .eyebrow{letter-spacing:.12em;}
-.cnt,.ixp a .no,.mi .ix,.chsteps .n,.step .no,.list .n,.asg .no,.rd b,.ixb b,.ixb em{
+.cnt,.ixp a .no,.mi .ix,.chsteps .n,.step .no,.list .n,.asg .no,.ixb b,.ixb em{
   font-family:'Departure Mono',monospace;font-size:11px;}
-.cnt,.rd,.chsteps .n,.step .no,.list .n,.asg .no,.mi .ix,.ixp a .no{
+.cnt,.chsteps .n,.step .no,.list .n,.asg .no,.mi .ix,.ixp a .no{
   font-feature-settings:'case' 1;}
 .cnt{letter-spacing:.11em;}
 .ixp a .no,.mi .ix,.list .n,.asg .no{letter-spacing:.07em;}
@@ -1050,21 +1038,22 @@ html[data-nav="5"] #hdr .btn{white-space:nowrap;}
       <div class="acts"><button class="btn" data-open-form><span>Նկարագրել խնդիրը</span><i>&#8599;</i></button><a class="btn gh" href="#services"><span>Ինչպես է իրականացվում մոնիթորինգը &darr;</span></a></div>
     </div>
     
-    <figure class="pq" id="pq" data-mode="normal">
-      <figcaption class="pq-cap"><span>Լարման ալիքի ձևը</span></figcaption>
-      <div class="pq-chart"><canvas class="pq-cv" aria-hidden="true"></canvas></div>
-      <div class="pq-ctl">
-        <div class="pq-modes" role="group" aria-label="Լարման ալիքի ձևը">
-          <button type="button" class="pq-m" data-mode="normal" aria-pressed="true"><i aria-hidden="true"></i><span>Նորմալ</span></button>
-          <button type="button" class="pq-m" data-mode="dip" aria-pressed="false"><i aria-hidden="true"></i><span>Լարման անկում</span></button>
-          <button type="button" class="pq-m" data-mode="harm" aria-pressed="false"><i aria-hidden="true"></i><span>Հարմոնիկներ</span></button>
-        </div>
-        <button type="button" class="pq-pause" data-pause="Դադարեցնել անիմացիան" data-resume="Շարունակել անիմացիան"><i aria-hidden="true"></i><span class="pq-pl"><b>Դադարեցնել անիմացիան</b><b aria-hidden="true">Շարունակել անիմացիան</b></span></button>
-      </div>
+    <div class="pq" id="pq" data-mode="normal">
       
+      <div class="pq-head">
+        <b class="pq-no" aria-hidden="true">01</b>
+        <div class="pq-dots" role="group" aria-label="Լարման ալիքի ձևը">
+          <button type="button" class="pq-dot" data-mode="normal" aria-pressed="true" aria-label="Նորմալ"><i aria-hidden="true"></i></button>
+          <button type="button" class="pq-dot" data-mode="dip" aria-pressed="false" aria-label="Լարման անկում"><i aria-hidden="true"></i></button>
+          <button type="button" class="pq-dot" data-mode="harm" aria-pressed="false" aria-label="Հարմոնիկներ"><i aria-hidden="true"></i></button>
+        </div>
+        <p class="pq-cap"><span data-x="normal">Նորմալ</span><span data-x="dip">Լարման անկում</span><span data-x="harm">Հարմոնիկներ</span></p>
+        <button type="button" class="pq-pause" data-pause="Դադարեցնել անիմացիան" data-resume="Շարունակել անիմացիան"><i aria-hidden="true"></i></button>
+      </div>
+      <div class="pq-chart"><canvas class="pq-cv" aria-hidden="true"></canvas></div>
       <p class="pq-x" aria-live="polite"><span data-x="normal">Կանոնավոր սինուսաձև ալիք։</span><span data-x="dip">Լարումը կարճ ժամանակով նվազում է, ապա վերականգնվում։</span><span data-x="harm">Հարմոնիկները աղավաղում են լարման ալիքի ձևը։</span></p>
       <p class="pq-note">Պատկերավոր օրինակ է, ոչ իրական չափում։</p>
-    </figure>
+    </div>
   </div>
 </section>
 
@@ -1081,7 +1070,6 @@ html[data-nav="5"] #hdr .btn{white-space:nowrap;}
     <ol class="chsteps" id="chsteps"></ol>
   </div>
 </div></section>
-
 
 
 <section class="sec suite" id="applications"><div class="spin"><div class="wrap">
@@ -1256,7 +1244,7 @@ html[data-nav="5"] #hdr .btn{white-space:nowrap;}
 </div></div></div>
 
 <script>
-window.PT={"ring": [["01", "ԼԱՐՈՒՄ", "ՀՈՍԱՆՔ", 0], ["02", "ՀԱՐՄՈՆԻԿՆԵՐ", "", 0], ["03", "ՖԼԻԿԵՐ", "", 0], ["04", "ԼԱՐՄԱՆ", "ԱՆԿՈՒՄՆԵՐ", 0], ["05", "ԱՆՀԱՄԱՉԱՓՈՒԹՅՈՒՆ", "", 0], ["06", "ՀԶՈՐՈՒԹՅՈՒՆ", "ԷՆԵՐԳԻԱ", 0], ["07", "ԴԵՊՔԵՐ", "", 0], ["08", "ՌԻՍԿԻ", "ԳՆԱՀԱՏՈՒՄ", 1]], "incident": "Միջադեպ", "seq": [["01", "Բնականոն աշխատանք"], ["02", "Էլեկտրական համակարգում իրադարձություն"], ["03", "Սարքավորման անջատում կամ ազդանշան"], ["04", "Համակարգի աշխատանքի վերականգնում"], ["05", "Գրանցումը պահպանվում է վերլուծության համար"]], "viewDetails": "Մանրամասներ", "hint1": " ֆայլ · ", "hintN": " ֆայլ · ", "hintSuf": " / 10 ՄԲ", "hint0": "Առավելագույնը՝ 10 ՄԲ։", "appTypes": ["Արտադրություն", "Արևային կայան", "Բուժհաստատություն / լաբորատորիա", "Տվյալների կենտրոն / IT", "Կոմերցիոն շենք", "Ներդրում / տեխնիկական գնահատում", "Այլ"], "cards": [{"title": "Արտադրություն", "img": "IMG0", "p1": "Լարման կարճատև անկումը կարող է ազդել սարքավորման վրա, ուստի իրադարձությունը պետք է գրանցվի հենց տեղի ունենալու պահին։", "findings": ["Գրանցված լարման անկումների ժամանակը, տևողությունը, նվազագույն RMS լարումը և այն ֆազերը, որոնցում դրանք գրանցվել են։", "Շարժիչների աշխատանքի համար նշանակալի լարման անհամաչափությունն ու բեռնվածության կորերը։", "Հարմոնիկայի չափում։ Դրա առկայության հնարավոր ազդեցությունները։"], "statLabel": "ՏԵԽՆԻԿԱԿԱՆ ՆՇՈՒՄ", "statText": "Լարման անկումներն ու կարճատև ընդհատումները կարող են անջատել էլեկտրոնային և էլեկտրամեխանիկական սարքերը և կանգնեցնել արտադրական գծերը։", "statSource": "Աղբյուր՝ EPRI"}, {"title": "Արևային կայաններ", "img": "IMG1", "p1": "Համապատասխան կետերում կատարված չափումները օգնում են տարբերակել կայանի ներսում և արտաքին ցանցում առաջացող գործոնները։", "findings": ["Լարման պայմանները ինվերտորի անջատման կամ ակտիվ հզորության սահմանափակման պահին։", "Լարման և հարմոնիկ աղավաղման համապատասխանությունը միացման կիրառելի պահանջներին։", "Անկախ չափման տվյալներ՝ գործարկման ընդունման կամ EPC աշխատանքների գնահատման համար։"], "note": "Ժամանակային նշումներով անկախ չափումները հնարավորություն են տալիս սեփականատիրոջը, EPC կապալառուին և ցանցի օպերատորին կայանի և միացման կետի էլեկտրական պայմանները գնահատել նույն տվյալների հիման վրա։"}, {"title": "Բժշկական կենտրոններ և լաբորատորիաներ", "img": "IMG2", "p1": "Երաշխիքային կամ սպասարկման գնահատման համար կարող են պահանջվել տվյալներ այն էլեկտրասնուցման պայմանների մասին, որոնցում սարքավորումն աշխատել է։ Մեկանգամյա չափումը կարող է չգրանցել պարբերաբար ի հայտ եկող իրադարձությունները։", "findings": ["Գրանցված էլեկտրասնուցման պայմանների համեմատությունն արտադրողի պահանջների հետ։", "Տվյալներ՝ էլեկտրասնուցմամբ պայմանավորված իրադարձությունները սարքավորման խափանումներից տարբերակելու համար։", "Հաջորդ ստուգումների առաջարկվող հերթականությունը՝ ըստ տեխնիկական կարևորության և աշխատանքի վրա ազդեցության։"], "statLabel": "ՏԵԽՆԻԿԱԿԱՆ ՆՇՈՒՄ", "statText": "IEC 60601-1-2-ը ներառում է բժշկական էլեկտրասարքավորումների՝ լարման անկումների և կարճատև ընդհատումների նկատմամբ խանգարումակայունության փորձարկումներ։", "statSource": "Աղբյուր՝ IEC"}, {"title": "Տվյալների կենտրոններ և ՏՏ ենթակառուցվածք", "img": "IMG3", "p1": "Գեներատորի գործարկումն ու սնուցման փոխանցումը կատարվում են այլ ժամանակային մասշտաբով, քան միլիվայրկյան տևող խանգարումները։ Ժամանակային նշումներով մոնիթորինգի տվյալները կարելի է համադրել UPS-ի և ՏՏ համակարգերի գրանցած իրադարձությունների հետ։", "findings": ["UPS-ի մուտքային բեռնվածությունը՝ անվանական հզորության համեմատ։", "Վերագործարկումների, մարտկոցից սնուցման ռեժիմի և գրանցված էլեկտրասնուցման խանգարումների միջև կապը։", "Պլանավորվող ընդլայնման համար նշանակալի բեռնվածության գրաֆիկները։"], "stat": "57%", "statLabel": "ՎԻՃԱԿԱԳՐՈՒԹՅՈՒՆ", "statText": "Uptime Institute-ի 2025 թ. տարեկան հարցման մասնակիցների այն բաժինը, որոնք նշել են, որ իրենց վերջին խոշոր խափանման արժեքը գերազանցել է 100 000 ԱՄՆ դոլարը։", "statSource": "Աղբյուր՝ Uptime Institute, Annual Outage Analysis 2026"}, {"title": "Կոմերցիոն տարածքներ", "img": "IMG4", "p1": "Չափումները կարող են օգնել տարբերակել արտաքին մատակարարման ցանցի պայմանները շենքի ներքին ցանցում կամ վարձակալների սարքավորումներից առաջացող խանգարումներից։", "findings": ["Տվյալներ խանգարման հավանական աղբյուրը գնահատելու համար։", "Գերտաքացման կամ պաշտպանիչ սարքերի գործարկման հետ կապված էլեկտրական պայմանները։", "Հզորության գործակիցը, ռեակտիվ հզորությունը և բեռնվածության միտումները՝ վճարների կամ հասանելի հզորության գնահատման համար։"], "statLabel": "ՏԵԽՆԻԿԱԿԱՆ ՆՇՈՒՄ", "statText": "Էլեկտրաէներգիայի որակի իրադարձությունները կարող են առաջանալ սպառողի հաշվիչի երկու կողմում՝ մատակարարման կամ ներքին ցանցում։", "statSource": "Աղբյուր՝ U.S. DOE / LBNL"}, {"title": "Ներդրումային և տեխնիկական գնահատում", "img": "IMG5", "p1": "Ժամանակավոր կամ շարունակական մոնիթորինգը հնարավորություն է տալիս անկախ կերպով գրանցել համակարգի փաստացի աշխատանքը։ Արդյունքները կարող են օգտագործվել տեխնիկական համալիր գնահատման, հանձնման, երաշխիքային ստուգման կամ աշխատանքի արդյունավետության գնահատման համար։", "findings": ["Համապատասխան կետերում դիտարկված բեռնվածությունն ու էլեկտրաէներգիայի որակը։", "Ընդհատումների կամ արտադրողականության նվազման հետ կապված գրանցված պայմանները։", "Սահմանափակումները, ռիսկերը և առաջարկվող լրացուցիչ ստուգումները։"], "note": "Հաշվետվությունը կարող է պատրաստվել հայերեն, ռուսերեն կամ անգլերեն։"}], "otherT": "Այլ կարևոր էլեկտրական համակարգեր", "otherP": "Չե՞ք գտնում ձեր ոլորտն այստեղ։ Նկարագրեք խնդիրը և դրա ազդեցությունը սարքավորման աշխատանքի վրա։", "imgs": {"IMG0": "/uploads/img/02_manufacturing_industrial_robot.jpg", "IMG1": "/uploads/img/03_solar_power_plant.jpg", "IMG2": "/uploads/img/06_healthcare_laboratory.jpg", "IMG3": "/uploads/img/05_data_center.jpg", "IMG4": "/uploads/img/04_commercial_building.jpg", "IMG5": "/uploads/img/08_finance_investment.jpg"}};
+window.PT={"incident": "Միջադեպ", "seq": [["01", "Բնականոն աշխատանք"], ["02", "Էլեկտրական համակարգում իրադարձություն"], ["03", "Սարքավորման անջատում կամ ազդանշան"], ["04", "Համակարգի աշխատանքի վերականգնում"], ["05", "Գրանցումը պահպանվում է վերլուծության համար"]], "viewDetails": "Մանրամասներ", "hint1": " ֆայլ · ", "hintN": " ֆայլ · ", "hintSuf": " / 10 ՄԲ", "hint0": "Առավելագույնը՝ 10 ՄԲ։", "appTypes": ["Արտադրություն", "Արևային կայան", "Բուժհաստատություն / լաբորատորիա", "Տվյալների կենտրոն / IT", "Կոմերցիոն շենք", "Ներդրում / տեխնիկական գնահատում", "Այլ"], "cards": [{"title": "Արտադրություն", "img": "IMG0", "p1": "Լարման կարճատև անկումը կարող է ազդել սարքավորման վրա, ուստի իրադարձությունը պետք է գրանցվի հենց տեղի ունենալու պահին։", "findings": ["Գրանցված լարման անկումների ժամանակը, տևողությունը, նվազագույն RMS լարումը և այն ֆազերը, որոնցում դրանք գրանցվել են։", "Շարժիչների աշխատանքի համար նշանակալի լարման անհամաչափությունն ու բեռնվածության կորերը։", "Հարմոնիկայի չափում։ Դրա առկայության հնարավոր ազդեցությունները։"], "statLabel": "ՏԵԽՆԻԿԱԿԱՆ ՆՇՈՒՄ", "statText": "Լարման անկումներն ու կարճատև ընդհատումները կարող են անջատել էլեկտրոնային և էլեկտրամեխանիկական սարքերը և կանգնեցնել արտադրական գծերը։", "statSource": "Աղբյուր՝ EPRI"}, {"title": "Արևային կայաններ", "img": "IMG1", "p1": "Համապատասխան կետերում կատարված չափումները օգնում են տարբերակել կայանի ներսում և արտաքին ցանցում առաջացող գործոնները։", "findings": ["Լարման պայմանները ինվերտորի անջատման կամ ակտիվ հզորության սահմանափակման պահին։", "Լարման և հարմոնիկ աղավաղման համապատասխանությունը միացման կիրառելի պահանջներին։", "Անկախ չափման տվյալներ՝ գործարկման ընդունման կամ EPC աշխատանքների գնահատման համար։"], "note": "Ժամանակային նշումներով անկախ չափումները հնարավորություն են տալիս սեփականատիրոջը, EPC կապալառուին և ցանցի օպերատորին կայանի և միացման կետի էլեկտրական պայմանները գնահատել նույն տվյալների հիման վրա։"}, {"title": "Բժշկական կենտրոններ և լաբորատորիաներ", "img": "IMG2", "p1": "Երաշխիքային կամ սպասարկման գնահատման համար կարող են պահանջվել տվյալներ այն էլեկտրասնուցման պայմանների մասին, որոնցում սարքավորումն աշխատել է։ Մեկանգամյա չափումը կարող է չգրանցել պարբերաբար ի հայտ եկող իրադարձությունները։", "findings": ["Գրանցված էլեկտրասնուցման պայմանների համեմատությունն արտադրողի պահանջների հետ։", "Տվյալներ՝ էլեկտրասնուցմամբ պայմանավորված իրադարձությունները սարքավորման խափանումներից տարբերակելու համար։", "Հաջորդ ստուգումների առաջարկվող հերթականությունը՝ ըստ տեխնիկական կարևորության և աշխատանքի վրա ազդեցության։"], "statLabel": "ՏԵԽՆԻԿԱԿԱՆ ՆՇՈՒՄ", "statText": "IEC 60601-1-2-ը ներառում է բժշկական էլեկտրասարքավորումների՝ լարման անկումների և կարճատև ընդհատումների նկատմամբ խանգարումակայունության փորձարկումներ։", "statSource": "Աղբյուր՝ IEC"}, {"title": "Տվյալների կենտրոններ և ՏՏ ենթակառուցվածք", "img": "IMG3", "p1": "Գեներատորի գործարկումն ու սնուցման փոխանցումը կատարվում են այլ ժամանակային մասշտաբով, քան միլիվայրկյան տևող խանգարումները։ Ժամանակային նշումներով մոնիթորինգի տվյալները կարելի է համադրել UPS-ի և ՏՏ համակարգերի գրանցած իրադարձությունների հետ։", "findings": ["UPS-ի մուտքային բեռնվածությունը՝ անվանական հզորության համեմատ։", "Վերագործարկումների, մարտկոցից սնուցման ռեժիմի և գրանցված էլեկտրասնուցման խանգարումների միջև կապը։", "Պլանավորվող ընդլայնման համար նշանակալի բեռնվածության գրաֆիկները։"], "stat": "57%", "statLabel": "ՎԻՃԱԿԱԳՐՈՒԹՅՈՒՆ", "statText": "Uptime Institute-ի 2025 թ. տարեկան հարցման մասնակիցների այն բաժինը, որոնք նշել են, որ իրենց վերջին խոշոր խափանման արժեքը գերազանցել է 100 000 ԱՄՆ դոլարը։", "statSource": "Աղբյուր՝ Uptime Institute, Annual Outage Analysis 2026"}, {"title": "Կոմերցիոն տարածքներ", "img": "IMG4", "p1": "Չափումները կարող են օգնել տարբերակել արտաքին մատակարարման ցանցի պայմանները շենքի ներքին ցանցում կամ վարձակալների սարքավորումներից առաջացող խանգարումներից։", "findings": ["Տվյալներ խանգարման հավանական աղբյուրը գնահատելու համար։", "Գերտաքացման կամ պաշտպանիչ սարքերի գործարկման հետ կապված էլեկտրական պայմանները։", "Հզորության գործակիցը, ռեակտիվ հզորությունը և բեռնվածության միտումները՝ վճարների կամ հասանելի հզորության գնահատման համար։"], "statLabel": "ՏԵԽՆԻԿԱԿԱՆ ՆՇՈՒՄ", "statText": "Էլեկտրաէներգիայի որակի իրադարձությունները կարող են առաջանալ սպառողի հաշվիչի երկու կողմում՝ մատակարարման կամ ներքին ցանցում։", "statSource": "Աղբյուր՝ U.S. DOE / LBNL"}, {"title": "Ներդրումային և տեխնիկական գնահատում", "img": "IMG5", "p1": "Ժամանակավոր կամ շարունակական մոնիթորինգը հնարավորություն է տալիս անկախ կերպով գրանցել համակարգի փաստացի աշխատանքը։ Արդյունքները կարող են օգտագործվել տեխնիկական համալիր գնահատման, հանձնման, երաշխիքային ստուգման կամ աշխատանքի արդյունավետության գնահատման համար։", "findings": ["Համապատասխան կետերում դիտարկված բեռնվածությունն ու էլեկտրաէներգիայի որակը։", "Ընդհատումների կամ արտադրողականության նվազման հետ կապված գրանցված պայմանները։", "Սահմանափակումները, ռիսկերը և առաջարկվող լրացուցիչ ստուգումները։"], "note": "Հաշվետվությունը կարող է պատրաստվել հայերեն, ռուսերեն կամ անգլերեն։"}], "otherT": "Այլ կարևոր էլեկտրական համակարգեր", "otherP": "Չե՞ք գտնում ձեր ոլորտն այստեղ։ Նկարագրեք խնդիրը և դրա ազդեցությունը սարքավորման աշխատանքի վրա։", "imgs": {"IMG0": "/uploads/img/02_manufacturing_industrial_robot.jpg", "IMG1": "/uploads/img/03_solar_power_plant.jpg", "IMG2": "/uploads/img/06_healthcare_laboratory.jpg", "IMG3": "/uploads/img/05_data_center.jpg", "IMG4": "/uploads/img/04_commercial_building.jpg", "IMG5": "/uploads/img/08_finance_investment.jpg"}};
 (function(){
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var PT=window.PT;
@@ -1301,9 +1289,6 @@ var PT=window.PT;
         else if(now>=nextAt[i]){s.textContent=POOL.charAt(Math.random()*POOL.length|0);nextAt[i]=now+SPEED+Math.random()*SPREAD;}
       }
       if(left>0)requestAnimationFrame(dtFrame);
-      else{
-        placeHeroCol();
-      }
     }
     requestAnimationFrame(dtFrame);
   }
@@ -1316,7 +1301,7 @@ var PT=window.PT;
   var fig=document.getElementById('pq');if(!fig)return;
   var box=fig.querySelector('.pq-chart'),cv=fig.querySelector('.pq-cv');
   var ctx=cv&&cv.getContext('2d');if(!ctx)return;
-  var mbs=[].slice.call(fig.querySelectorAll('.pq-m'));
+  var MODES=['normal','dip','harm'],dots=[].slice.call(fig.querySelectorAll('.pq-dot')),noEl=fig.querySelector('.pq-no');
   var pbtn=fig.querySelector('.pq-pause');
   var CYCLES=4;            
   var SPEED=0.45;          
@@ -1444,9 +1429,20 @@ var PT=window.PT;
     last=performance.now();raf=requestAnimationFrame(frame);
   }
   function stop(){if(raf){cancelAnimationFrame(raf);raf=0;}}
+  var POOL='#%&@$?!*+=/{}[]<>~^',scrT=0;
+  function setNo(k,init){
+    if(!noEl)return;var fin='0'+(k+1);
+    if(rm||init){noEl.textContent=fin;return;}
+    clearInterval(scrT);var t0=performance.now();
+    scrT=setInterval(function(){
+      if(performance.now()-t0>260){clearInterval(scrT);noEl.textContent=fin;return;}
+      noEl.textContent=POOL.charAt(Math.random()*POOL.length|0)+POOL.charAt(Math.random()*POOL.length|0);
+    },45);
+  }
   function setMode(m,init){
     mode=m;fig.dataset.mode=m;
-    mbs.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.mode===m?'true':'false');});
+    dots.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.mode===m?'true':'false');});
+    setNo(MODES.indexOf(m),init);
     var d1=m==='dip'?1:0,h1=m==='harm'?1:0;
     if(d1&&wd<0.001){
       dipBase=rm?T-CYCLES*0.5-DIP.len/2:T+DIP.first;
@@ -1460,14 +1456,14 @@ var PT=window.PT;
     pbtn.setAttribute('aria-label',p?pbtn.dataset.resume:pbtn.dataset.pause);
     if(p)stop();else start();
   }
-  mbs.forEach(function(b,i){
+  dots.forEach(function(b,i){
     b.addEventListener('click',function(){if(b.dataset.mode!==mode)setMode(b.dataset.mode);});
     b.addEventListener('keydown',function(e){
       var k=e.key,j=-1;
-      if(k==='ArrowRight'||k==='ArrowDown')j=(i+1)%mbs.length;
-      else if(k==='ArrowLeft'||k==='ArrowUp')j=(i+mbs.length-1)%mbs.length;
-      else if(k==='Home')j=0;else if(k==='End')j=mbs.length-1;
-      if(j<0)return;e.preventDefault();mbs[j].focus();
+      if(k==='ArrowRight'||k==='ArrowDown')j=(i+1)%dots.length;
+      else if(k==='ArrowLeft'||k==='ArrowUp')j=(i+dots.length-1)%dots.length;
+      else if(k==='Home')j=0;else if(k==='End')j=dots.length-1;
+      if(j<0)return;e.preventDefault();dots[j].focus();
     });
   });
   pbtn.addEventListener('click',function(){setPaused(playing);});
@@ -1494,11 +1490,6 @@ var PT=window.PT;
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){size();draw();});
   start();
 })();
-function placeHeroCol(){
-  var col=document.querySelector('.hero .hcol'),pq=document.querySelector('.hero .pq');
-  if(col)col.style.top='';if(pq)pq.style.top='';
-}
-placeHeroCol();
 var hprog=document.getElementById('hprog'),barWas=null,progWas=null;
 function mBar(){var m=document.documentElement.scrollHeight-innerHeight;
   return {on:window.pageYOffset>60,p:m>0?Math.min(1,window.pageYOffset/m):0};}
@@ -1593,74 +1584,6 @@ function aJoints(ps){
   }
 }
 function paintJoints(){aJoints(mJoints());}
-function buildRails(){
-  cacheBump();
-  if(innerWidth<1100){
-    return document.querySelectorAll('.srail').forEach(function(s){s.remove();});}
-  document.querySelectorAll('section[data-rail]').forEach(function(sec,si){
-    var old=sec.querySelector('.srail');if(old)old.remove();
-    var h2=sec.querySelector('h2');if(!h2)return;
-    var H=sec.offsetHeight,W2=110;
-    var yh=h2.getBoundingClientRect().top-sec.getBoundingClientRect().top+h2.offsetHeight/2;
-    var ns='http://www.w3.org/2000/svg';
-    var svg=document.createElementNS(ns,'svg');
-    svg.setAttribute('class','srail');
-    svg.setAttribute('viewBox','0 0 '+W2+' '+H);
-    svg.setAttribute('preserveAspectRatio','none');
-    svg.style.cssText='position:absolute;top:0;left:clamp(4px,1.4vw,18px);width:'+W2+'px;height:'+H+'px;pointer-events:none;overflow:visible;';
-    var top=si===0?0:Math.max(0,yh-46);
-    var dEl=route([[8,top],[8,yh],[W2-14,yh]],16);
-    var elbow=document.createElementNS(ns,'path');
-    elbow.setAttribute('d',dEl);
-    elbow.setAttribute('fill','none');elbow.setAttribute('stroke','currentColor');
-    elbow.setAttribute('stroke-opacity','.22');elbow.setAttribute('stroke-width','1');
-    svg.appendChild(elbow);
-    var tick=document.createElementNS(ns,'rect');
-    tick.setAttribute('x',W2-14);tick.setAttribute('y',yh-2.5);
-    tick.setAttribute('width','5');tick.setAttribute('height','5');
-    tick.style.fill='var(--brand-ink)';
-    svg.appendChild(tick);
-    var pl=document.createElementNS(ns,'path');
-    pl.setAttribute('d',dEl);
-    pl.setAttribute('class','pulse');pl.setAttribute('fill','none');
-    pl.style.stroke='var(--brand-ink)';pl.setAttribute('stroke-width','1.6');
-    pl.setAttribute('stroke-linecap','round');
-    svg.appendChild(pl);
-    sec.style.position='relative';
-    sec.appendChild(svg);
-    var PL=pl.getTotalLength();
-    pl.setAttribute('stroke-dasharray',(PL*0.34).toFixed(1)+' '+(PL*1.4).toFixed(1));
-    pl.dataset.len=PL;
-    svg.dataset.yh=yh;
-  });
-  paintRails();
-}
-var RC=null,RCv=-1;
-function railCache(){
-  if(RC&&RCv===DOMV.v)return RC;
-  RC=[].slice.call(document.querySelectorAll('.srail')).map(function(svg){
-    var pl=svg.querySelector('.pulse');
-    return pl?{svg:svg,el:pl,L:+pl.dataset.len,yh:+svg.dataset.yh||0,o:null,p:null}:null;
-  }).filter(function(x){return x;});
-  RCv=DOMV.v;return RC;
-}
-function mRails(){
-  var c=railCache(),vh=innerHeight,out=[];
-  for(var i=0;i<c.length;i++){
-    var p=(vh*0.80-(c[i].svg.getBoundingClientRect().top+c[i].yh))/(vh*0.30);
-    out.push(p<0?0:(p>1?1:p));
-  }
-  return out;
-}
-function aRails(ps){
-  var c=RC;if(!c)return;
-  for(var i=0;i<c.length;i++){
-    var p=ps[i],off=(c[i].L*0.34-p*c[i].L*1.34).toFixed(1),op=(p>0.005&&p<0.999?1:0);
-    if(c[i].o!==off){c[i].o=off;c[i].el.setAttribute('stroke-dashoffset',off);}
-    if(c[i].p!==op){c[i].p=op;c[i].el.setAttribute('opacity',op);}
-  }
-}
-function paintRails(){aRails(mRails());}
 var STEPS=PT.seq;
 var chsteps=document.getElementById('chsteps'),chainEl=document.getElementById('chain'),
     chainFill=document.getElementById('chainfill');
@@ -2518,9 +2441,9 @@ function scrollPaint(){
   var y=window.pageYOffset;
   if(!FR.force&&y===FR.y)return;
   FR.y=y;FR.force=false;
-  var d1=mSeq(),d2=mSuite(),d3=mJoints(),d4=mRails(),d5=mDither(),
+  var d1=mSeq(),d2=mSuite(),d3=mJoints(),d5=mDither(),
       d6=mNav(),d7=mReveal(),d8=mHeaderTheme(),d9=mTone(),d10=mIx(),d12=mBar();
-  aSeq(d1);aSuite(d2);aJoints(d3);aRails(d4);aDither(d5);
+  aSeq(d1);aSuite(d2);aJoints(d3);aDither(d5);
   aNav(d6);aReveal(d7);aHeaderTheme(d8);aTone(d9);aIx(d10);aBar(d12);
 }
 var FR={q:0,y:-1,force:true};
@@ -2531,14 +2454,15 @@ function scrollSchedule(){
 }
 document.addEventListener('scroll',scrollSchedule,{passive:true,capture:true});
 addEventListener('resize',function(){cacheBump();FR.force=true;scrollSchedule();},{passive:true});
-buildJoints();buildRails();
+buildJoints();
 cacheBump();scrollRepaint();
 (function(){var R=document.documentElement;
   function vwpx(){R.style.setProperty('--vwpx',R.clientWidth+'px');}
   vwpx();addEventListener('resize',vwpx);})();
-addEventListener('resize',function(){clearTimeout(placeHeroCol.t);placeHeroCol.t=setTimeout(function(){placeHeroCol();buildJoints();buildWipe();buildRails();buildDither();layoutSuite();},220);});
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){buildRails();placeHeroCol();scrollRepaint();});
-addEventListener('load',function(){buildRails();layoutSuite();placeHeroCol();scrollRepaint();});
+var sizeT=0;
+addEventListener('resize',function(){clearTimeout(sizeT);sizeT=setTimeout(function(){buildJoints();buildWipe();buildDither();layoutSuite();},220);});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){scrollRepaint();});
+addEventListener('load',function(){layoutSuite();scrollRepaint();});
 addEventListener('orientationchange',function(){
   setTimeout(function(){
     var y=window.pageYOffset;
