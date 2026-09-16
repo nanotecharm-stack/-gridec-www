@@ -145,7 +145,15 @@ header nav a.here{color:var(--inv-fg);background:var(--inv);}
 .ixp a{display:grid;grid-template-columns:34px minmax(0,1fr);
   gap:14px;align-items:baseline;padding:13px 0;color:var(--inv-fg);}
 .ixp a .no{font-family:'Mardoto','Arian AMU','Helvetica Neue',sans-serif;font-size:11px;letter-spacing:.14em;color:var(--brand-ink);}
-.ixp a .tl{font-size:17px;line-height:1.35;color:rgba(246,241,233,.88);transition:color .2s var(--e);}
+.ixp a .tl{font-size:17px;line-height:1.35;color:rgba(246,241,233,.88);transition:color .2s var(--e);
+  display:inline-flex;flex-wrap:wrap;}
+.ixp .tl .wd{display:inline-flex;white-space:nowrap;}
+.ixp .tl .sp{display:inline-block;width:.31em;}
+.ixp .tl .lt{display:inline-block;overflow:hidden;height:1.35em;}
+.ixp .tl .lt i{display:block;height:1.35em;font-style:normal;
+  transition:transform .3s var(--e);transition-delay:0s;}
+.ixp a:hover .tl .lt i,.ixp a:focus-visible .tl .lt i{transform:translateY(-100%);
+  transition:transform .6s var(--e);transition-delay:var(--d,0ms);}
 .ixp a:hover .tl{color:#F0EAE0;}
 .ixp a.here .no{font-weight:600;}
 .ixp a.here .tl{color:var(--brand-ink);}
@@ -181,6 +189,8 @@ body::before{opacity:1;z-index:-1;mix-blend-mode:soft-light;
   .ixp,.ixp.on,.ixsc,.ixp li,.ixp.on li,.ixp::before{transition:none;}
   .ixp li{opacity:1;transform:none;}
   .ixp::before{transform:scaleX(1);}
+  .ixp .tl .lt i{transition:none;}
+  .ixp a:hover .tl .lt i{transform:none;}
 }
 html[data-nav="1"] header{background:var(--bg);box-shadow:0 1px 0 var(--hair);pointer-events:auto;}
 html[data-nav="1"] .hin{height:58px;grid-template-columns:auto 1fr auto;}
@@ -852,6 +862,19 @@ footer .rv{transition-delay:calc(var(--i,0) * .09s);}
   #iovl.open #imd .bd>*{opacity:0;transform:translateY(10px);}
   #iovl.open #imd .x{opacity:0;}
 }
+#fovl .md{clip-path:inset(0 0 0 0);transition:opacity .2s var(--e),clip-path .75s cubic-bezier(.2,.8,.2,1);}
+#fmd #f_main>*{transition:opacity .5s var(--e),transform .6s cubic-bezier(.2,.7,.15,1);}
+#fmd #f_main>:nth-child(1){transition-delay:.3s;}
+#fmd #f_main>:nth-child(2){transition-delay:.36s;}
+#fmd #f_main>:nth-child(3){transition-delay:.42s;}
+#fmd #f_main>:nth-child(4){transition-delay:.48s;}
+#fmd #f_main>:nth-child(n+5){transition-delay:.54s;}
+#fmd .x{transition:transform .16s var(--e),background .35s var(--e),color .35s var(--e),box-shadow .35s var(--e),opacity .3s var(--e) .55s;}
+@starting-style{
+  #fovl.open .md{opacity:1;transform:none;clip-path:inset(0 100% 0 0);}
+  #fovl.open #fmd #f_main>*{opacity:0;transform:translateY(10px);}
+  #fovl.open #fmd .x{opacity:0;}
+}
 .md{background:var(--bg);color:var(--fg);max-width:760px;width:100%;margin:auto;position:relative;border-radius:2px;overflow:hidden;box-shadow:0 24px 80px rgba(8,26,49,.4);}
 .md:focus,.md .done:focus{outline:none;}
 .md .x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:2px;
@@ -895,7 +918,7 @@ footer .rv{transition-delay:calc(var(--i,0) * .09s);}
   text-transform:uppercase;color:var(--fg-soft);}
 #pmd a{color:var(--brand-ink);text-decoration:underline;text-underline-offset:3px;}
 #fmd .in{padding:clamp(26px,4vw,46px);}
-#fmd h3{font-size:calc(clamp(19px,2vw,28px) * var(--hs));margin-bottom:10px;}
+#fmd h3{font-size:calc(clamp(19px,2vw,28px) * var(--hs));margin-bottom:26px;}   
 #fmd h3 .ac{font-style:normal;color:var(--brand-ink);}
 #fmd .intro{font-size:var(--t-note);line-height:1.6;margin-bottom:28px;max-width:56ch;
   color:color-mix(in srgb,var(--fg) 78%,transparent);}
@@ -1076,12 +1099,24 @@ html[data-nav="5"].hscr .hprog{opacity:1;}
 html[data-nav="5"] .hprog::after{content:"";position:absolute;right:0;bottom:0;
   width:1px;height:4px;background:inherit;}
 html[data-nav="5"] header[data-tone="ink"] .hprog{background:#7BA4D0;}
-html[data-nav="5"]:has(#ixp.on) #hdr::before{background:#0D2440;
-  -webkit-backdrop-filter:none;backdrop-filter:none;opacity:1;}
+html[data-nav="5"] .hin::after{content:"";position:absolute;inset:0;z-index:-1;background:#0D2440;
+  transform:scaleX(0);transform-origin:left;opacity:0;pointer-events:none;
+  transition:opacity .25s var(--e),transform 0s linear .25s;}
+html[data-nav="5"]:has(#ixp.on) .hin::after{opacity:1;transform:scaleX(1);
+  transition:transform .62s var(--e),opacity 0s;}
+html[data-nav="5"]:has(#ixp.on) #hdr::before{-webkit-backdrop-filter:none;backdrop-filter:none;}
 html[data-nav="5"]:has(#ixp.on) #hdr::after{opacity:0;}
+html[data-nav="5"]:has(#ixp.on) .wm{transition:color .18s var(--e);}
+html[data-nav="5"]:has(#ixp.on) .ixb{transition:transform .16s var(--e),box-shadow .28s var(--e),color .14s var(--e) .06s;}
+html[data-nav="5"]:has(#ixp.on) .lang{transition:transform .16s var(--e),box-shadow .28s var(--e),color .14s var(--e) .08s;}
+@media(max-width:960px){
+  html[data-nav="5"]:has(#ixp.on) .ixb,html[data-nav="5"]:has(#ixp.on) .lang{transition:transform .16s var(--e),box-shadow .28s var(--e),color .12s var(--e) 0s;}
+  html[data-nav="5"]:has(#ixp.on) #hdr .btn{transition:background .12s var(--e) .02s,color .12s var(--e) .02s,box-shadow .12s var(--e) .02s;}
+}
 html[data-nav="5"]:has(#ixp.on) .hprog{opacity:0;}
 html[data-nav="5"]:has(#ixp.on) #hdr .btn{background:transparent;color:#F6F1E9;
-  box-shadow:inset 0 0 0 1px rgba(246,241,233,.32);}
+  box-shadow:inset 0 0 0 1px rgba(246,241,233,.32);
+  transition:background .14s var(--e) .1s,color .14s var(--e) .1s,box-shadow .14s var(--e) .1s;}
 html[data-nav="5"]:has(#ixp.on) #hdr .btn:hover{background:#F6F1E9;color:#0D2440;}
 html[data-nav="5"] #hdr .btn{white-space:nowrap;}
 @media(max-width:960px){
@@ -1308,13 +1343,12 @@ html[data-nav="5"] #hdr .btn{white-space:nowrap;}
     
     <form id="ptfForm" novalidate>
     
-    <div class="ghd">Կապի տվյալներ <em>*</em></div>
-    <p class="ghd-note" id="ghdNote">Էլ. փոստ կամ հեռախոս՝ գոնե մեկը, որպեսզի կարողանանք պատասխանել։</p>
+    
     <div class="fr">
       <div><label for="ptfName">Անուն <em>*</em></label><input id="ptfName" name="name" type="text" autocomplete="name" placeholder="Ձեր անունը" required aria-required="true" aria-describedby="ptfNameErr"><span class="ferr" id="ptfNameErr" role="alert"></span></div>
       <div><label for="ptfCompany">Ընկերություն <span class="opt">ըստ ցանկության</span></label><input id="ptfCompany" name="company" type="text" autocomplete="organization" placeholder="Ընկերության անվանումը"></div>
-      <div><label for="ptfEmail">Էլ. փոստ</label><input id="ptfEmail" name="email" type="email" autocomplete="email" placeholder="name@company.com" aria-describedby="ghdNote ptfEmailErr"><span class="ferr" id="ptfEmailErr" role="alert"></span></div>
-      <div><label for="ptfPhone">Հեռախոս</label><input id="ptfPhone" name="phone" type="tel" autocomplete="tel" placeholder="+374 ..." aria-describedby="ghdNote ptfPhoneErr"><span class="ferr" id="ptfPhoneErr" role="alert"></span></div>
+      <div><label for="ptfEmail">Էլ. փոստ</label><input id="ptfEmail" name="email" type="email" autocomplete="email" placeholder="name@company.com" aria-describedby="ptfEmailErr"><span class="ferr" id="ptfEmailErr" role="alert"></span></div>
+      <div><label for="ptfPhone">Հեռախոս</label><input id="ptfPhone" name="phone" type="tel" autocomplete="tel" placeholder="+374 ..." aria-describedby="ptfPhoneErr"><span class="ferr" id="ptfPhoneErr" role="alert"></span></div>
     </div>
     <div class="gl" id="glApp">Ոլորտ</div>
     <div class="tps" id="ptfTypes" role="group" aria-labelledby="glApp"></div>
@@ -2039,7 +2073,8 @@ ixItems.forEach(function(it){
   var li=document.createElement('li');
   li.innerHTML='<a href="#'+it.id+'"><span class="no"></span><span class="tl"></span></a>';
   li.querySelector('.no').textContent=it.no;
-  li.querySelector('.tl').textContent=it.title;
+  letterize(li.querySelector('.tl'),it.title);
+  li.querySelector('a').setAttribute('aria-label',it.no+' '+it.title);
   li.style.setProperty('--i',ixlist.children.length);
   ixlist.appendChild(li);
 });
@@ -2059,7 +2094,10 @@ var sheet=document.createElement('span');sheet.className='sheet';ixb.appendChild
 var ixsc=document.getElementById('ixsc');
 if(ixsc)ixsc.addEventListener('click',function(){ixOpen(false);});
 function ixOpen(on){
-  if(on){ixp.hidden=false;setTimeout(function(){ixp.classList.add('on');},16);
+  if(on){ixp.hidden=false;
+    void ixp.offsetHeight;
+    requestAnimationFrame(function(){ixp.classList.add('on');
+      if(typeof toneUnderBar==='function')toneUnderBar();});
     clearTimeout(ixOpen.rdy);
     ixOpen.rdy=setTimeout(function(){
       if(ixp.classList.contains('on'))ixp.classList.add('rdy');
@@ -2085,6 +2123,29 @@ document.addEventListener('click',function(e){
   if(e.target.closest('#ixp')||e.target.closest('#ixb'))return;
   ixOpen(false);
 });
+function letterize(el,text){
+  el.textContent='';el.setAttribute('aria-hidden','true');
+  var n=text.length,order=[],i,j,tmp;
+  for(i=0;i<n;i++)order.push(i);
+  for(i=n-1;i>0;i--){j=Math.floor(Math.random()*(i+1));tmp=order[i];order[i]=order[j];order[j]=tmp;}
+  var rank=[];for(i=0;i<n;i++)rank[order[i]]=i;
+  var step=Math.min(25,300/Math.max(1,n-1));
+  var word=null;
+  for(i=0;i<n;i++){
+    var ch=text.charAt(i);
+    if(ch===' '){
+      word=null;
+      var sp=document.createElement('span');sp.className='sp';sp.textContent=' ';
+      el.appendChild(sp);continue;
+    }
+    if(!word){word=document.createElement('span');word.className='wd';el.appendChild(word);}
+    var lt=document.createElement('span');lt.className='lt';
+    lt.style.setProperty('--d',(rank[i]*step).toFixed(1)+'ms');
+    var a=document.createElement('i'),b=document.createElement('i');
+    a.textContent=ch;b.textContent=ch;
+    lt.appendChild(a);lt.appendChild(b);word.appendChild(lt);
+  }
+}
 function mIx(){
   var probe=innerHeight*0.34,cur=null,last=null;
   for(var i=0;i<ixItems.length;i++){
@@ -2144,7 +2205,7 @@ function mTone(){
       overBand=true;break;
     }
   }
-  if(!ixp.hidden){tone='ink';overBand=false;}
+  if(ixp.classList.contains('on')){tone='ink';overBand=false;}   
   return {tone:tone,band:overBand};
 }
 var toneWas=null,scrimWas=null;
