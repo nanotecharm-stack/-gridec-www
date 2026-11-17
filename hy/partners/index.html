@@ -330,6 +330,7 @@ html[data-nav="3"] .ixp{margin-top:var(--s3);}
   border-radius:2px;color:var(--c-whitewash);box-shadow:inset 0 0 0 1px var(--c-ink-plate-a12);
   background:var(--c-whitewash-a9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
 .lang:hover{color:var(--c-ink-plate);box-shadow:inset 0 0 0 1px var(--c-ink-plate-a26);}
+i>svg.ar,.pb-list i>svg.ar{display:block;width:.8em;height:.8em;max-width:none;margin:0;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.4px;stroke-linecap:square;vector-effect:non-scaling-stroke;}
 .btn i{position:relative;z-index:1;display:grid;place-items:center;width:22px;height:22px;border-radius:var(--r-in);
   background:color-mix(in srgb,var(--inv-fg) 16%,transparent);font-style:normal;font-size:12px;
   transition:transform .2s var(--e),background .2s var(--e);}
@@ -1151,6 +1152,19 @@ html[data-nav="5"] #hdr .btn{white-space:nowrap;}
 }
 @media(max-width:419px){ html[data-nav="5"] .ixw{display:none;} }
 @media(max-width:479px){ html[data-nav="5"][lang="hy"] .ixw{display:none;} html[data-nav="5"] .ixb{padding:12px 6px;margin-right:-6px;} }
+.ixp .ixlang{display:none;}
+@media(max-width:529px){
+  html[data-nav="5"] #hdr .lang{display:none;}
+  html[data-nav="5"] .ixp .ixlang{display:flex;align-items:center;gap:9px;width:100%;min-height:44px;margin-top:6px;padding:12px 0 6px;
+    color:var(--c-paper-a84);text-decoration:none;font-family:var(--face-mardoto);font-size:12px;letter-spacing:.12em;}
+  html[data-nav="5"][lang="hy"] .ixp .ixlang{font-family:var(--face-mardoto);letter-spacing:.04em;}
+  html[data-nav="5"] .ixp .ixlang .gl{width:14px;height:14px;flex:0 0 auto;}
+}
+@media(min-width:375px) and (max-width:529px){
+  html[data-nav="5"][lang] .ixw{display:inline;}
+  html[data-nav="5"] #hdr .btn{padding-left:9px;padding-right:9px;}
+  html[data-nav="5"] #hdr .ixb .cv{margin-left:5px;}
+}
 @media(max-width:379px){ .lang .gl{display:none;} html[data-nav="5"] .lang{padding:7px 6px;margin-right:-6px;} html[data-nav="5"] header .btn{padding:10px 11px;} }
 @media(max-width:359px){ html[data-nav="5"] .ixw{display:none;} }
 .par-head{padding:calc(76px + clamp(28px,4vw,60px)) 0 clamp(28px,3.4vw,48px);}
@@ -1288,12 +1302,12 @@ html[data-nav="5"] #hdr .btn{white-space:nowrap;}
     
     <a class="lang" href="/partners/" aria-label="English · Անգլերեն" title="English · Անգլերեն"><svg class="gl" viewBox="0 0 14 14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><circle cx="7" cy="7" r="5.6"/><ellipse cx="7" cy="7" rx="2.4" ry="5.6"/><path d="M1.4 7h11.2M2.5 4.1h9M2.5 9.9h9"/></svg><span>ENG</span></a>
     
-    <a class="btn" href="#end"><span>Կապ մեզ հետ</span><i>&#8599;&#xFE0E;</i></a>
+    <a class="btn" href="#end"><span>Կապ մեզ հետ</span><i><svg class="ar" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8 8 2M3 2h5v5"/></svg></i></a>
   </div>
 </div>
 <span class="hprog-clip" aria-hidden="true"><i class="hprog" id="hprog"></i></span>
 <div class="ixsc" id="ixsc"></div>
-<div class="ixp" id="ixp" hidden><div class="ixin"><ol id="ixlist"></ol></div></div>
+<div class="ixp" id="ixp" hidden><div class="ixin"><ol id="ixlist"></ol><a class="flang ixlang" href="/partners/" aria-label="English · Անգլերեն"><svg class="gl" viewBox="0 0 14 14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><circle cx="7" cy="7" r="5.6"/><ellipse cx="7" cy="7" rx="2.4" ry="5.6"/><path d="M1.4 7h11.2M2.5 4.1h9M2.5 9.9h9"/></svg><span>ENG</span></a></div></div>
 </header>
 <main>
 
