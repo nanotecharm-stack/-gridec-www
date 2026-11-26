@@ -393,8 +393,12 @@ html[lang="hy"] .hero .hp{font-size:16px;line-height:1.6;}
 .hphoto{position:relative;margin:0;width:100%;background:var(--c-7f7e7e);}
 .hphoto img{display:block;width:100%;height:auto;}
 .hmark{position:absolute;left:var(--hx);top:20%;margin:0;width:max-content;max-width:22%;
-  font-family:var(--face-mardoto);font-size:var(--t-aux);line-height:2;letter-spacing:.12em;font-weight:500;
+  font-family:var(--face-mardoto);font-size:var(--t-aux);line-height:2;letter-spacing:.04em;font-weight:500;
   color:var(--c-1f3a2e);}
+/* 2026-11-26: слова на фото терялись на тёмных полосах кадра: светлая дымка слева и цвет заголовка */
+.hmark{color:#17241F;}
+@media (min-width:768px){.hphoto::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(203,201,198,.74) 0,rgba(203,201,198,.7) 24%,rgba(203,201,198,0) 44%);}}
 .hmark span{display:block;}
 .hmark::after{content:"";display:block;width:18px;height:1px;background:currentColor;margin-top:20px;}
 :lang(hy) .hmark{letter-spacing:.01em;}
@@ -409,7 +413,7 @@ html[lang="hy"] .hero .hp{font-size:16px;line-height:1.6;}
   .hero h1{width:auto;max-width:none;font-size:calc(clamp(36px,10vw,44px) * var(--hs));}
   .hero .hp{font-size:16.5px;}
   .hphoto img{aspect-ratio:4/3;object-fit:cover;object-position:94% 50%;}
-  .hmark{position:static;width:auto;max-width:none;padding:12px clamp(20px,4vw,24px) 0;font-size:var(--t-aux);line-height:1.7;letter-spacing:.1em;
+  .hmark{position:static;width:auto;max-width:none;padding:12px clamp(20px,4vw,24px) 0;font-size:var(--t-aux);line-height:1.7;letter-spacing:.04em;
     background:var(--bg);color:var(--fg-mid);}
   .hmark span{display:inline;}
   .hmark span+span::before{content:"\00a0\00a0\00b7\00a0\0020";}
@@ -1432,7 +1436,7 @@ footer .flist a::after,footer .fcon a::after{content:"";position:absolute;inset:
          srcset="/uploads/hero/switchboard2-930.webp 930w, /uploads/hero/switchboard2-1860.webp 1860w"
          sizes="100vw" width="1860" height="846" alt="Էլեկտրաէներգիայի որակի չափումների պատկերազարդում՝ Ռոգովսկու կոճեր և շարժական չափիչ սարք էլեկտրական բաշխիչ վահանակի մոտ։" fetchpriority="high" decoding="sync">
     
-    <figcaption class="hmark"><span>Չափումներ</span><span>Վերլուծություն</span><span>Առաջարկություններ</span></figcaption>
+    <figcaption class="hmark"><span>Չափագրում</span><span>Վերլուծություն</span><span>Լուծումներ</span></figcaption>
   </figure>
 </section>    </div>
 
