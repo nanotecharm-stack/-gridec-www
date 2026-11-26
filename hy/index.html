@@ -392,13 +392,11 @@ html[lang="hy"] .hero .hp{font-size:16px;line-height:1.6;}
 .hero .acts .btn.gh:focus-visible{outline:2px solid var(--brand);outline-offset:6px;border-radius:var(--r);}
 .hphoto{position:relative;margin:0;width:100%;background:var(--c-7f7e7e);}
 .hphoto img{display:block;width:100%;height:auto;}
-.hmark{position:absolute;left:var(--hx);top:20%;margin:0;width:max-content;max-width:22%;
+.hmark{position:absolute;left:var(--hx);top:auto;bottom:9%;margin:0;width:max-content;max-width:22%;
   font-family:var(--face-mardoto);font-size:var(--t-aux);line-height:2;letter-spacing:.04em;font-weight:500;
   color:var(--c-1f3a2e);}
-/* 2026-11-26: слова на фото терялись на тёмных полосах кадра: светлая дымка слева и цвет заголовка */
+/* 2026-11-26: слова стоят внизу слева, на светлой части кадра (выше идут тёмные полосы); цвет как у заголовка */
 .hmark{color:#17241F;}
-@media (min-width:768px){.hphoto::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,rgba(203,201,198,.74) 0,rgba(203,201,198,.7) 24%,rgba(203,201,198,0) 44%);}}
 .hmark span{display:block;}
 .hmark::after{content:"";display:block;width:18px;height:1px;background:currentColor;margin-top:20px;}
 :lang(hy) .hmark{letter-spacing:.01em;}
